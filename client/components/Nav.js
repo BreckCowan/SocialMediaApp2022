@@ -6,7 +6,7 @@ const Nav = () => {
       {/* Link to home page */}
       <li className="nav-item">
         <Link href="/">
-          <a className="nav-link text-light">Home</a>
+          <a className="nav-link text-light">Bar Tab</a>
         </Link>
       </li>
       {/* Link to login page */}
