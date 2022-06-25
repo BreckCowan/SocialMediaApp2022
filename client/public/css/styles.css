@@ -1,5 +1,14 @@
 .bar-pic {
-    max-width: 100%;
-    max-width: 100%;
+  max-width: 100%;
+  max-width: 100%;
+  transition: 2s;
 }
 
+.bar-pic:hover {
+  max-width: 100%;
+  max-width: 100%;
+  filter: saturate(350%);
+  transition: 2s;
+  box-shadow: inset 50px 50px 70px 50px black;
+  z-index: 5;
+}

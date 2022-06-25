@@ -4,7 +4,7 @@ const Home = () => {
       <div className="row">
         <div className="col">
           <h1 className="display-1 text-center py-5">Bar Tab</h1>
-          <img className="bar-pic" src='/images/back-bar.jpg'></img>
+          <img className="bar-pic vignette" src='/images/back-bar.jpg'></img>
         </div>
       </div>
     </div>

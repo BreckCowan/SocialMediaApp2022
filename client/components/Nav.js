@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Nav = () => {
   return (
-    <nav className="nav justify-content-around bg-dark d-flex">
+    <nav className="nav justify-content-around d-flex" style={{backgroundColor: "blue" }}>
       {/* Link to home page */}
       <li className="nav-item">
         <Link href="/">
