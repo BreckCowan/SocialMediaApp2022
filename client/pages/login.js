@@ -44,7 +44,6 @@ const Login = () => {
         <div className="col-md-6 offset-md-3">
           <AuthForm
             handleSubmit={handleSubmit}
-            
             email={email}
             setEmail={setEmail}
             password={password}

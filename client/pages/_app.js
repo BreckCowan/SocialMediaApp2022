@@ -1,3 +1,4 @@
+import { UserProvider } from "../context";
 import "../public/css/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "../components/Nav";
@@ -8,7 +9,7 @@ import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <UserProvider>
       <Head />
       <Nav />
       <ToastContainer
@@ -23,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         pauseOnHover
       />
       <Component {...pageProps} />
-    </>
+    </UserProvider>
   );
 }
 
