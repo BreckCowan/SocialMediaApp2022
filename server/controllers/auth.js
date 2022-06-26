@@ -24,7 +24,7 @@ export const register = async (req, res) => {
       ok: true,
     });
   } catch (err) {
-    console.log("Register Failed => ", err);
+    // console.log("Register Failed => ", err);
     return res.status(400).send("Error, please try again");
   }
 };
