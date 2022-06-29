@@ -1,3 +1,27 @@
+// import { useState, createContext, useEffect } from "react";
+
+// const UserContext = createContext();
+
+// const UserProvider = ({ children }) => {
+//   const [state, setState] = useState({
+//     user: {},
+//     token: "",
+//   });
+
+//   useEffect(() => {
+//     setState(JSON.parse(window.localStorage.getItem("auth")));
+//   }, []);
+
+//   return (
+//     <UserContext.Provider value={[state, useState]}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
+
+// export { UserContext, UserProvider };
+
+// code block from course resources
 import { useState, createContext, useEffect } from "react";
 
 const UserContext = createContext();
@@ -13,7 +37,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={[state, useState]}>
+    <UserContext.Provider value={[state, setState]}>
       {children}
     </UserContext.Provider>
   );

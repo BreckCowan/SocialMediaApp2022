@@ -22,3 +22,7 @@
 .logo {
   text-shadow: 2px 2px navy;
 }
+
+body {
+  background-color: #fff;
+}
