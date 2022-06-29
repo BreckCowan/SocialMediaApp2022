@@ -1,33 +1,71 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import AuthForm from "../components/forms/AuthForm";
 import { useRouter } from "next/router";
+import { UserContext } from "../context";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("jay@jay.com");
+  const [password, setPassword] = useState("password");
   const [loading, setLoading] = useState(false);
+
+  const [state, setState] = useContext(UserContext);
 
   const router = useRouter();
 
+  //code block producing errors
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // console.log(name, email, password, secret);
+  //     setLoading(true);
+  //     const { data } = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_API}/login`,
+  //       {
+  //         email,
+  //         password,
+  //       }
+  //     );
+  //     setState({
+  //       user: data.user,
+  //       token: data.token,
+  //     });
+  //     console.log(data);
+  //     router.push("/");
+  //   } catch (err) {
+  //     toast.error('Something went wrong')
+  //     // console.log(err.response.data)
+  //     setLoading(false);
+  //   }
+  // };
+
+  //code solution from course instructor
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      // console.log(name, email, password, secret);
-      setLoading(true);
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/login`,
-        {
-          email,
-          password,
-        }
-      );
-      console.log(data)
-      // router.push("/");
+      const { data } = await axios.post(`/login`, {
+        email,
+        password,
+      });
+      if (data.error) {
+        toast.error(data.error);
+        setLoading(false);
+      } else {
+        // update in context
+
+        setState({
+          user: data.user,
+          token: data.token,
+        });
+        // save in local storage
+        window.localStorage.setItem('auth', JSON.stringify(data));
+        // router.push("/user/dashboard");
+      }
     } catch (err) {
-      toast.error(err.response.data);
+      console.log(err);
       setLoading(false);
     }
   };
@@ -49,7 +87,7 @@ const Login = () => {
             password={password}
             setPassword={setPassword}
             loading={loading}
-            page={'login'}
+            page="login"
           />
         </div>
       </div>
@@ -57,7 +95,7 @@ const Login = () => {
       <div className="row">
         <div className="col">
           <p className="text-center">
-            Not registered?{" "}
+            Not yet registered?{" "}
             <Link href="/register">
               <a>Register</a>
             </Link>

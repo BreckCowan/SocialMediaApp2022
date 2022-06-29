@@ -30,22 +30,60 @@ export const register = async (req, res) => {
   }
 };
 
+//code block creating errors
+// export const login = async (req, res) => {
+//   // console.log(req.body)
+//   try {
+//     const { email, password } = req.body;
+//     //check if database has a user with that email
+//     const user = await User.findOne({ email });
+//     if (!user) return res.status(400).send("No user found");
+//     //check password
+//     const match = await comparePassword(password, user.password);
+//     if (!match) return res.status(400).send("Incorrect password");
+//     //create signed token
+//     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+//       expiresIn: "7d",
+//     });
+//     user.password = undefined;
+//     user.secret = undefined;
+//     res.json({
+//       user,
+//       token,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).send("Error. Try again.");
+//   }
+// };
+
+//code solution from course instructor
 export const login = async (req, res) => {
-  // console.log(req.body)
   try {
+    // console.log(req.body);
     const { email, password } = req.body;
-    //check if database has a user with that email
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).send("No user found");
-    //check password
+    // check if our db has user with that email
+    const user = await User.findOne({ email }).exec();
+    if (!user) {
+      return res.json({
+        error: "No user found",
+      });
+    }
+
+    // check password
     const match = await comparePassword(password, user.password);
-    if (!match) return res.status(400).send("Incorrect password");
-    //create signed token
+    if (!match) {
+      return res.json({
+        error: "Wrong password",
+      });
+    }
+
+    // create signed token
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: "7d", // 20 * 60 = 20 sec
     });
-    user.password = undefined;
-    user.secret = undefined;
+
+    // return user and token to client, exclude password and secret
     res.json({
       token,
       user,
