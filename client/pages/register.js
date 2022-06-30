@@ -6,9 +6,9 @@ import Link from "next/link";
 import AuthForm from "../components/forms/AuthForm";
 
 const Register = () => {
-  const [name, setName] = useState("Ryan");
-  const [email, setEmail] = useState("ryan@gmail.com");
-  const [password, setPassword] = useState("rrrrrr");
+  const [name, setName] = useState("Jay");
+  const [email, setEmail] = useState("jay@jay.com");
+  const [password, setPassword] = useState("password");
   const [secret, setSecret] = useState("");
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);

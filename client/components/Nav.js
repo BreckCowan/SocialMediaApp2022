@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { UserContext } from "../context";
 import { useRouter } from "next/router";
 
 const Nav = () => {
+  const [current, setCurrent] = useState("");
   const [state, setState] = useContext(UserContext);
+
+  useEffect(() => {
+    process.browser && setCurrent(window.location.pathname);
+  }, [process.browser && window.location.pathname]);
+
+  console.log("current => ", current);
 
   const router = useRouter();
 
@@ -16,24 +23,40 @@ const Nav = () => {
 
   return (
     <nav
-      className="nav d-flex justify-content-between"
+      className="nav d-flex justify-content-around"
       style={{ backgroundColor: "blue" }}
     >
       <Link href="/">
-        <a className="nav-link text-light logo">Bar Tabs</a>
+        <a className={`nav-link text-light flicker neon-text ${current === '/' && 'active'}`}>Bar Tabs</a>
       </Link>
 
-      <Link href="/login">
-        <a className="nav-link text-light">Login</a>
-      </Link>
+      {state !== null ? (
+        <>
+          <Link href="/user/dashboard">
+            <a
+              className={`nav-link text-light ${
+                current === "/user/dashboard" && "active" && "flicker neon-text"
+              }`}
+            >
+              {state && state.user && state.user.name}
+            </a>
+          </Link>
 
-      <Link href="/register">
-        <a className="nav-link text-light">Register</a>
-      </Link>
+          <a onClick={logout} className="nav-link text-light">
+            Logout
+          </a>
+        </>
+      ) : (
+        <>
+          <Link href="/login">
+            <a className={`nav-link text-light ${current === '/login' && 'active' && 'flicker' && 'neon-text'}`}>Login</a>
+          </Link>
 
-      <a onClick={logout} className="nav-link text-light">
-        Logout
-      </a>
+          <Link href="/register">
+            <a className={`nav-link text-light ${current === '/register' && 'active' && 'flicker' && 'neon-text'}`}>Register</a>
+          </Link>
+        </>
+      )}
     </nav>
   );
 };
