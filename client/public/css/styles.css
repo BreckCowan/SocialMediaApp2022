@@ -25,12 +25,13 @@
 }
 
 .active{
-  background-color: rgba(45, 188, 224, 0);
+  background-color: rgba(45, 188, 224, 0.63);
+  box-shadow: inset 0px 0px 40px 40px rgb(45, 87, 224);
 }
 
 .neon-text {
   animation: flicker 1.5s infinite alternate;
-  color: #fff;
+  color: rgb(223, 226, 31);
 }
 
 @keyframes flicker {
@@ -40,7 +41,7 @@
       0 0 11px #fff,
       0 0 19px #fff,
       0 0 40px rgb(0, 38, 255),
-      0 0 80px rgb(0, 217, 255),
+      0 0 80px rgba(0, 217, 255, 0.788),
       0 0 90px rgb(4, 0, 255),
       0 0 100px rgb(0, 217, 255),
       0 0 150px rgb(0, 60, 255);

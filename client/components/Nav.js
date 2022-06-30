@@ -11,7 +11,7 @@ const Nav = () => {
     process.browser && setCurrent(window.location.pathname);
   }, [process.browser && window.location.pathname]);
 
-  console.log("current => ", current);
+  // console.log("current => ", current);
 
   const router = useRouter();
 
@@ -23,11 +23,17 @@ const Nav = () => {
 
   return (
     <nav
-      className="nav d-flex justify-content-around"
+      className="nav d-flex justify-content-between"
       style={{ backgroundColor: "blue" }}
     >
       <Link href="/">
-        <a className={`nav-link text-light flicker neon-text ${current === '/' && 'active'}`}>Bar Tabs</a>
+        <a
+          className={`nav-link text-light flicker neon-text ${
+            current === "/" && "active"
+          }`}
+        >
+          Bar Tabs
+        </a>
       </Link>
 
       {state !== null ? (
@@ -35,7 +41,10 @@ const Nav = () => {
           <Link href="/user/dashboard">
             <a
               className={`nav-link text-light ${
-                current === "/user/dashboard" && "active" && "flicker neon-text"
+                current === "/user/dashboard" &&
+                "active" &&
+                "flicker" &&
+                "neon-text" 
               }`}
             >
               {state && state.user && state.user.name}
@@ -49,11 +58,23 @@ const Nav = () => {
       ) : (
         <>
           <Link href="/login">
-            <a className={`nav-link text-light ${current === '/login' && 'active' && 'flicker' && 'neon-text'}`}>Login</a>
+            <a
+              className={`nav-link text-light ${
+                current === "/login" && "active" && "flicker" && "neon-text"
+              }`}
+            >
+              Login
+            </a>
           </Link>
 
           <Link href="/register">
-            <a className={`nav-link text-light ${current === '/register' && 'active' && 'flicker' && 'neon-text'}`}>Register</a>
+            <a
+              className={`nav-link text-light ${
+                current === "/register" && "active" && "flicker" && "neon-text"
+              }`}
+            >
+              Register
+            </a>
           </Link>
         </>
       )}
