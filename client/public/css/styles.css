@@ -50,3 +50,7 @@
     text-shadow: none;
   }
 }
+
+.blow-out {
+  filter: saturate(1000)
+}
