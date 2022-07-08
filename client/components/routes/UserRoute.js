@@ -41,7 +41,7 @@ const UserRoute = ({ children }) => {
       className="d-flex justify-content-center display-1 text-primary p-5"
     />
   ) : (
-    <> {children}</>
+    <> {children} </>
   );
 };
 
